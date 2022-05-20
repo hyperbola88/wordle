@@ -3,10 +3,11 @@ import useWordle from "../hooks/useWordle";
 import Grid from "./Grid";
 import Keypad from "./Keypad";
 import Modal from "./Modal";
+import Warning from "./Warning";
 
 function Wordle({ solution, changeAgain, again }) {
   //сразу вытащили из пропса так тока солюшн
-  const { currentGuess, handleKeyup, guesses, turn, isCorrect, usedKeys, reload } =
+  const { currentGuess, handleKeyup, guesses, turn, isCorrect, usedKeys, reload, warning, removeWarning } =
     useWordle(solution);
   const [showModal, setShowModal] = useState(false);
   
@@ -34,18 +35,19 @@ function Wordle({ solution, changeAgain, again }) {
       reload();
       console.log("reloaded");
    }
-  }, [again, reload])
+  }, [again, reload]);
+
+  console.log(solution);
 
 
   return (
     <div>
-      <div>Solution: {solution}</div>
-      <div>Current guess: {currentGuess}</div>
       <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
       <Keypad usedKeys={usedKeys} />
       {showModal && !again && (
         <Modal isCorrect={isCorrect} turn={turn} solution={solution} changeAgain={changeAgain}/>
       )}
+      {warning && <Warning removeWarning={removeWarning} warning={warning}/>}
     </div>
   );
 }

@@ -7,6 +7,7 @@ const useWordle = (solution) => {
   const [history, setHistory] = useState([]); // тут догадки сохраняем стрингами, чтоб сверять нет ли повторок
   const [isCorrect, setIsCorrect] = useState(false);
   const [usedKeys, setUsedKeys] = useState({}); //О формата {a: "grey", b: "green"}
+  const [warning, setWarning] = useState(null);
 
   //2)догадку - в массив
   const formatGuess = () => {
@@ -43,8 +44,7 @@ const useWordle = (solution) => {
       setIsCorrect(true);
     };
 
-    //тут сохраняем все догадки как массив О-тов ???? почему так???
-   // setGuesses((prev) => [...prev, prev[turn] = formattedGuess]);
+    //тут сохраняем все догадки как массив О-тов (в О-тах сохраняется данные о цветах каждой буквы в каждой догадке)
    setGuesses(prev => {
       let newGuesses = [...prev];
       newGuesses[turn] = formattedGuess;
@@ -57,6 +57,7 @@ const useWordle = (solution) => {
     //помнять число попыток в стейте попыток
     setTurn(prev => prev + 1);
 
+   //назначаем цвета буквам клавиатуры
     setUsedKeys(prevUsedKeys => {
        formattedGuess.forEach(letter => {
           const currentColor = prevUsedKeys[letter.key];
@@ -96,14 +97,17 @@ const useWordle = (solution) => {
       }
       if (history.includes(currentGuess)) {
         console.log("You already tries this world!");
+        setWarning("Это слово уже было!");
+        setCurrentGuess('');
         return;
       }
       if (currentGuess.length !== 5) {
         console.log("The word must be 5 characters!");
+        setWarning("Слово должно быть длиной в 5 букв!")
         return;
       }
-      const formatted = formatGuess(); //если прошли то можно сохранять догадку
-      addNewGuess(formatted); //сохраняем догадку
+      const formatted = formatGuess(); //если прошли то можно сохранять догадку после Энтера
+      addNewGuess(formatted); //сохраняем отформатированную догадку
     }
 
     if (key === "Backspace") {
@@ -113,7 +117,7 @@ const useWordle = (solution) => {
       });
       return; //выходим потому что если был бэкспейс то дальнейшая проверка не нужна
     }
-    if (/^[A-Za-z]$/.test(key)) {
+    if (/^[А-Яа-я]$/.test(key)) {
       //проверяем является ли нажатая клавиша буквой тогда тру
       if (currentGuess.length < 5) {
         //проверяем количество уже набранных букв
@@ -131,7 +135,11 @@ const useWordle = (solution) => {
      setHistory([]);
   }, []);
 
-  return { turn, currentGuess, guesses, isCorrect, handleKeyup, usedKeys, reload }; //возвращаем нужное другим компонентам
+  const removeWarning = useCallback(() => {
+     setWarning(null);
+  }, []);
+
+  return { turn, currentGuess, guesses, isCorrect, handleKeyup, usedKeys, reload, warning, removeWarning }; //возвращаем нужное другим компонентам
 };
 
 export default useWordle;

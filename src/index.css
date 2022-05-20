@@ -60,7 +60,7 @@ h1 {
   animation: bounce 0.2s ease-in-out forwards;
 }
 .keypad {
-  max-width: 500px;
+  max-width: 550px;
   margin: 20px auto;
 }
 .keypad > div {

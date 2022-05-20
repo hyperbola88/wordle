@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Marina's Wordle</h1>
+      <h1>Угадай слово из 5 букв</h1>
       {solution && (
         <Wordle solution={solution} changeAgain={changeAgain} again={again} />
       )}

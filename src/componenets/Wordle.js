@@ -6,7 +6,7 @@ import Modal from "./Modal";
 import Warning from "./Warning";
 
 function Wordle({ solution, changeAgain, again }) {
-  //сразу вытащили из пропса так тока солюшн
+  //сразу вытащили из пропса так тока солюшн зафетчился
   const { currentGuess, handleKeyup, guesses, turn, isCorrect, usedKeys, reload, warning, removeWarning } =
     useWordle(solution);
   const [showModal, setShowModal] = useState(false);
@@ -33,11 +33,10 @@ function Wordle({ solution, changeAgain, again }) {
    if(again) {
       setShowModal(false);
       reload();
-      console.log("reloaded");
    }
   }, [again, reload]);
 
-  console.log(solution);
+  
 
 
   return (

@@ -1,9 +1,6 @@
 import React from "react";
 
 const Modal = ({ isCorrect, solution, turn, changeAgain }) => {
-   //const changePage = () => {
-     // document.location.reload(true);
-   //}
 
   return (
     <div className="modal">

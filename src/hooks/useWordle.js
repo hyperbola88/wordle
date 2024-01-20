@@ -6,7 +6,7 @@ const useWordle = (solution) => {
   const [guesses, setGuesses] = useState([...Array(6)]); // следим за всеми догадгами, их в массив
   const [history, setHistory] = useState([]); // тут догадки сохраняем стрингами, чтоб сверять нет ли повторок
   const [isCorrect, setIsCorrect] = useState(false);
-  const [usedKeys, setUsedKeys] = useState({}); //О формата {a: "grey", b: "green"}
+  const [usedKeys, setUsedKeys] = useState({}); //Объект формата {a: "grey", b: "green"}
   const [warning, setWarning] = useState(null);
 
   //2)догадку - в массив
@@ -79,7 +79,6 @@ const useWordle = (solution) => {
     })
 
     setCurrentGuess(""); //очищаем для новой догадки
-    console.log(turn, currentGuess, history);
   };
 
   //1)следим за ивентом keyUp
@@ -92,17 +91,14 @@ const useWordle = (solution) => {
       //и если слово не повторяется
       //и слово длиной 5 букв
       if (turn > 5) {
-        console.log("no more guesses!");
         return;
       }
       if (history.includes(currentGuess)) {
-        console.log("You already tries this world!");
         setWarning("Это слово уже было!");
         setCurrentGuess('');
         return;
       }
       if (currentGuess.length !== 5) {
-        console.log("The word must be 5 characters!");
         setWarning("Слово должно быть длиной в 5 букв!")
         return;
       }

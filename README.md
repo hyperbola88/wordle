@@ -4,7 +4,7 @@
 > Live demo at https://react-wordle-hyperbola88.web.app
 
 ## General Information
-- Try to guess 5-letter word in Russian in 6 attempts!
+- Try to guess 5-letter word in 6 attempts!
 
 
 ## Technologies Used
@@ -12,11 +12,11 @@
 - CSS
 - React 
 - Redux to manage data through all components
-- Firebase Realtime Database to store solutuions list
+- Firebase Realtime Database to store letters list and solutuions list
 
 
 ## Game process algorythm:
-- the solution is fetched from the database and saved as an array of letters
+- list of letters and the solution is fetched from the database and saved as an array of letters
 - entering words:
   - user enters a letter & a square is filled with that letter
   - when a user hits delete it deletes the previous letter

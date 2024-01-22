@@ -6,18 +6,18 @@ const Modal = ({ isCorrect, solution, turn, changeAgain }) => {
     <div className="modal">
       {isCorrect && (
         <div>
-          <h1>Верно!</h1>
-          <p className="solution">Ответ: {solution}</p>
-          <p>Вы угадали с {turn} попыток!</p>
-          <button onClick={changeAgain}>Еще раз!</button>
+          <h1>You won!</h1>
+          <p className="solution">Answer is: {solution}</p>
+          <p>You've guessed in {turn} tries!</p>
+          <button onClick={changeAgain}>Play again!</button>
         </div>
       )}
       {!isCorrect && (
         <div>
-          <h1>Упс!</h1>
-          <p>Правильный ответ: {solution}</p>
-          <p>Сыграть еще раз?</p>
-          <button onClick={changeAgain}>Еще раз!</button>
+          <h1>Oops!</h1>
+          <p>The answer is: {solution}</p>
+          <p>Wanna try again?</p>
+          <button onClick={changeAgain}>Play again!</button>
         </div>
       )}
     </div>

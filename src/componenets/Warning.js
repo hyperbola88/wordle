@@ -5,7 +5,7 @@ const Warning = ({ warning, removeWarning }) => {
     <div className="modal">
       <div>
         <h1>{warning}</h1>
-        <button onClick={removeWarning}>Понятно!</button>
+        <button onClick={removeWarning}>Got it!</button>
       </div>
     </div>
   );

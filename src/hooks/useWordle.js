@@ -94,12 +94,12 @@ const useWordle = (solution) => {
         return;
       }
       if (history.includes(currentGuess)) {
-        setWarning("Это слово уже было!");
+        setWarning("You've already tried this word");
         setCurrentGuess('');
         return;
       }
       if (currentGuess.length !== 5) {
-        setWarning("Слово должно быть длиной в 5 букв!")
+        setWarning("The word must be 5 letters long!")
         return;
       }
       const formatted = formatGuess(); //если прошли то можно сохранять догадку после Энтера
@@ -113,7 +113,7 @@ const useWordle = (solution) => {
       });
       return; //выходим потому что если был бэкспейс то дальнейшая проверка не нужна
     }
-    if (/^[А-Яа-я]$/.test(key)) {
+    if (/^[A-Za-z]$/.test(key)) {
       //проверяем является ли нажатая клавиша буквой тогда тру
       if (currentGuess.length < 5) {
         //проверяем количество уже набранных букв
